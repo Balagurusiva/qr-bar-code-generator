@@ -1,40 +1,26 @@
-import React from 'react' 
-import { Button, Box, Stack ,TextField} from '@mui/material'; 
-import QRCode from "react-qr-code";
-import { useState } from 'react';
-
+import React, { useState } from 'react'
+import QrCode from './QrCode'
+import Barcode from './BarCode'
+import { Stack,Button} from '@mui/material'
 
 const App = () => {
-  const [state, setState] = useState('off')
-  const [qr_value, setQr_value] = useState('') 
 
+  const [ToShow, setToShow] = useState('')
   return (
-    <Box sx={{  width: 250,
-                      height: 'inherit',
-                      borderRadius:4,
-                      p: 2,
-                      margin:'auto', 
-                      backgroundColor:'#fff'
-                      }}>
-         <Stack justifyContent="center" alignItems="center" spacing={3}>
-               <h2>Enter your url/text</h2>
-               <TextField 
-                         id="outlined-size-small" 
-                         size='small' label="text/url" 
-                         variant="outlined" 
-                         p='0px' 
-                         value={qr_value}
-                         onChange={(e)=>{setQr_value(e.target.value)}}/> 
-               {state === 'on' && <QRCode id='qrcode' value={qr_value}  style={{ height: "auto", maxWidth: "100%", width: "100%" }}/>}
-               <Button 
-                       variant="contained" 
-                       onClick={() =>{  
-                                              setState('on')
-                                               setQr_value('')
-                                           }}>Generate QR Code </Button>
-         </Stack>
-    </Box>
+     <>
+       <Stack gap={3} justifyContent='center' alignItems='center'>
+           <Stack direction='row' gap={2}>
+           <Button variant="contained"  onClick={()=>setToShow('QR')} >Generate QR Code </Button>
+           <Button variant="contained"  onClick={()=>setToShow('Bar')}>Genetate Bar code </Button>
+           </Stack>
+
+          {ToShow === 'QR' && <QrCode />}
+          {ToShow === 'Bar' && <Barcode />}
+       </Stack>
+     
+     </>
   )
 }
 
 export default App
+
