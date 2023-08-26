@@ -1,0 +1,11 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    background-color: black;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
